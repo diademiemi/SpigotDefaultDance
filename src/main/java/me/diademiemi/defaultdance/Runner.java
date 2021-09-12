@@ -35,51 +35,19 @@ public class Runner implements Listener {
 	 * @param player	Player to hide/show
 	 * @param hidden	Boolean for if player should be hidden
 	 */
-	public static void hidePlayer(Player player, boolean hidden) {
-		if (hidden = true) {
+	public static void freezePlayer(Player player) {
+		Location location = player.getLocation();
+		World world = location.getWorld();
 
-			for (Player pl : Bukkit.getOnlinePlayers()) {
-				player.showPlayer(DefaultDance.getInstance(), pl);
-			}
+		ArmorStand container = (ArmorStand) world.spawnEntity(location.subtract(0, 1.13125, 0), EntityType.ARMOR_STAND);
 
-			Location location = player.getLocation();
-			World world = location.getWorld();
+		container.setGravity(false);
+		container.setVisible(false);
+		container.setInvulnerable(true);
 
-			ArmorStand container = (ArmorStand) world.spawnEntity(location.subtract(0, 1.13125, 0), EntityType.ARMOR_STAND);
+		container.addPassenger(player);
 
-			container.setGravity(false);
-			container.setVisible(false);
-			container.setInvulnerable(true);
-
-			container.addPassenger(player);
-
-			active.add(player.getUniqueId());
-
-			return;
-
-		} else {
-
-			for (Player pl : Bukkit.getOnlinePlayers()) {
-				player.hidePlayer(DefaultDance.getInstance(), pl);
-			}
-
-			if (active.contains(player.getUniqueId())) {
-
-				active.remove(player.getUniqueId());
-
-				if (player.getVehicle() != null && player.getVehicle() instanceof ArmorStand) {
-
-					Entity vehicle = player.getVehicle();
-					vehicle.eject();
-					vehicle.remove();
-
-				}
-
-			}
-
-			return;
-
-		}
+		return;
 
 	}
 
@@ -92,10 +60,10 @@ public class Runner implements Listener {
 	 * Bukkit scheduled task to animate armor stand
 	 *
 	 * @param as	Armor stand to animate
-	 * @param id	UUID of player
+	 * @param p	Player to animate at
 	 * @param i	Integer to count amount of times this has looped
 	 */
-	public static void danceSequence(ArmorStand as, UUID id, Integer i) {
+	public static void danceSequence(ArmorStand as, Player p, Integer i) {
 		Bukkit.getServer().getScheduler().runTaskLater(DefaultDance.getInstance(), new Runnable(){
 			public void run() {
 
@@ -108,24 +76,36 @@ public class Runner implements Listener {
 						as.setRightArmPose(ea(-100, 30, 0));
 						as.setLeftArmPose(ea(-100, -30, 0));
 						break;
+					case 2:
+						as.setRightArmPose(ea(-100, -30, 0.0));
+						as.setLeftArmPose(ea(-100, 30, 0.0));
+						break;
+					case 3:
+						as.setRightArmPose(ea(-100, 30, 0));
+						as.setLeftArmPose(ea(-100, -30, 0));
+						break;
+					default:
+						active.remove(p.getUniqueId());
+						break;
 
 				}
 
-				if (active.contains(id)) {
+				if (!(active.contains(p.getUniqueId()))) {
 
-					if (i < 2) {
+					if (p.getVehicle() != null && p.getVehicle() instanceof ArmorStand) {
 
-						danceSequence(as, id, i + 1);
-
-					} else {
-
-						as.eject();
-						as.remove();
-						active.remove(id);
+						Entity vehicle = p.getVehicle();
+						vehicle.eject();
+						vehicle.remove();
 
 					}
 
+					as.remove();
+					return;
+
 				}
+
+				danceSequence(as, p, i + 1);
 
 			}
 
@@ -151,7 +131,9 @@ public class Runner implements Listener {
 			actor.setInvulnerable(true);
 			actor.setArms(true);
 
-			danceSequence(actor, player.getUniqueId(), 0); 
+			active.add(player.getUniqueId());
+
+			danceSequence(actor, player, 0); 
 
 	}
 	/**
@@ -162,14 +144,14 @@ public class Runner implements Listener {
 	public static void doDefaultDance(Player player) {
 
 		if (active.contains(player.getUniqueId())) {
-			
-			active.remove(player.getUniqueId());
 
 			Entity vehicle = player.getVehicle();
 
+			active.remove(player.getUniqueId());
+
 			vehicle.eject();
-			vehicle.remove();
-			
+			vehicle.remove();			
+
 			return;
 
 		}
@@ -179,7 +161,7 @@ public class Runner implements Listener {
 			return;
 		}
 
-		hidePlayer(player, true);
+		freezePlayer(player);
 		dance(player);
 
 	}
@@ -207,10 +189,11 @@ public class Runner implements Listener {
 			return;
 		}
 
-		Entity vehicle = event.getDismounted();
-		vehicle.eject();
-		vehicle.remove();
 		active.remove(player.getUniqueId());
+
+		Entity vehicle = event.getDismounted();
+		vehicle.remove();
+
 
 	}
 
