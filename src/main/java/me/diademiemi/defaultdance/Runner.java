@@ -98,6 +98,108 @@ public class Runner implements Listener {
 						as.setRightArmPose(ea(-100, 30, 0));
 						as.setLeftArmPose(ea(-100, -30, 0));
 						break;
+					case 4:
+						as.setRightArmPose(ea(-45, 0, 0));
+						as.setLeftArmPose(ea(-45, 0, 0));
+						as.setRightLegPose(ea(-20, 0, 0));
+						as.setLeftLegPose(ea(20, 0, 0));
+						break;
+					case 5:
+						break;
+					case 6:
+						as.setRightArmPose(ea(-80, 0, 0));
+						as.setLeftArmPose(ea(-80, 0, 0));
+						as.setRightLegPose(ea(0, 0, 0));
+						as.setLeftLegPose(ea(0, 0, 0));
+						break;
+					case 7:
+						as.setRightArmPose(ea(-45, 0, 0));
+						as.setLeftArmPose(ea(-45, 0, 0));
+						as.setRightLegPose(ea(30, 0, 0));
+						as.setLeftLegPose(ea(-30, 0, 0));
+						break;
+					case 8:
+						as.setRightArmPose(ea(-80, 0, 0));
+						as.setLeftArmPose(ea(-80, 0, 0));
+						as.setRightLegPose(ea(0, 0, 0));
+						as.setLeftLegPose(ea(0, 0, 0));
+						break;
+					case 9:
+						as.setRightArmPose(ea(-45, 0, 0));
+						as.setLeftArmPose(ea(-45, 0, 0));
+						as.setRightLegPose(ea(20, 0, 0));
+						as.setLeftLegPose(ea(-20, 0, 0));
+						break;
+					case 10:
+						as.setRightArmPose(ea(-100, 30, 0));
+						as.setLeftArmPose(ea(-100, -30, 0));
+						as.setRightLegPose(ea(20, 0, 0));
+						as.setLeftLegPose(ea(-20, 0, 0));
+						break;
+					case 11:
+						as.setRightArmPose(ea(-100, -30, 0));
+						as.setLeftArmPose(ea(-100, 30, 0));
+						break;
+					case 12:
+						as.setRightArmPose(ea(-20, 0, 0));
+						as.setLeftArmPose(ea(-20, 0, 0));
+						as.setRightLegPose(ea(-30, 0, 0));
+						as.setLeftLegPose(ea(30, 0, 0));
+						break;
+					case 13:
+						as.setRightArmPose(ea(-80, 0, 0));
+						as.setLeftArmPose(ea(-80, 0, 0));
+						as.setRightLegPose(ea(0, 0, 0));
+						as.setLeftLegPose(ea(0, 0, 0));
+						break;
+					case 14:
+						break;
+					case 15:
+						as.setRightArmPose(ea(-20, 0, 0));
+						as.setLeftArmPose(ea(-20, 0, 0));
+						as.setRightLegPose(ea(20, 0, 0));
+						as.setLeftLegPose(ea(-20, 0, 0));
+						break;
+					case 16:
+						as.setRightArmPose(ea(-80, 0, 0));
+						as.setLeftArmPose(ea(-80, 0, 0));
+						as.setRightLegPose(ea(0, 0, 0));
+						as.setLeftLegPose(ea(0, 0, 0));
+						break;
+					case 17:
+						as.setRightArmPose(ea(-20, 0, 0));
+						as.setLeftArmPose(ea(-20, 0, 0));
+						as.setRightLegPose(ea(-30, 0, 0));
+						as.setLeftLegPose(ea(30, 0, 0));
+						break;
+					case 18:
+						as.setRightArmPose(ea(-90, 0, 0));
+						as.setLeftArmPose(ea(0, 0, 5));
+						break;
+					case 19:
+						as.setRightLegPose(ea(0, 0, 0));
+						as.setLeftLegPose(ea(0, 0, 0));
+						break;
+					case 20:
+						as.setRightLegPose(ea(30, 0, 0));
+						as.setLeftLegPose(ea(-30, 0, 0));
+						break;
+					case 21:
+						as.setRightArmPose(ea(-115, 15, -15));
+						as.setLeftArmPose(ea(-115, -15, 15));
+						as.setRightLegPose(ea(0, 0, 0));
+						as.setLeftLegPose(ea(0, 0, 0));
+						break;
+					case 22:
+						as.setRightArmPose(ea(-20, -45, -35));
+						as.setLeftArmPose(ea(-20, 45, 35));
+						as.setRightLegPose(ea(0, -10, -15));
+						as.setLeftLegPose(ea(-5, 0, -5));
+						break;
+					case 23:
+						break;
+					case 24:
+						break;
 					default:
 						active.remove(p.getUniqueId());
 						break;
