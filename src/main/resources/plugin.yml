@@ -1,7 +1,7 @@
 name: DefaultDance
 description: Minecraft Spigot Default Dance
 author: diademiemi
-version: 0.1.0
+version: 1.0.0
 main: me.diademiemi.defaultdance.DefaultDance
 api-version: 1.16
 commands:
