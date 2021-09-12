@@ -9,6 +9,8 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
@@ -45,14 +47,26 @@ public class Runner implements Listener {
 		container.setVisible(false);
 		container.setInvulnerable(true);
 
+		PotionEffect invis = new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 1, false, false);
+
+		player.addPotionEffect(invis);
+
 		container.addPassenger(player);
 
 		return;
 
 	}
 
+	/**
+	 * Get EulerAngle from 3 numbers
+	 *
+	 * @param dx	Double of X
+	 * @param dy	Double of Y
+	 * @param dz	Double of Z
+	 * @return EulerAngle
+	 */
 	public static EulerAngle ea(double dx, double dy, double dz) {
-		EulerAngle eangle = new EulerAngle(dx, dy, dz);
+		EulerAngle eangle = new EulerAngle(Math.toRadians(dx), Math.toRadians(dy), Math.toRadians(dz));
 		return eangle;
 	}
 
@@ -69,16 +83,16 @@ public class Runner implements Listener {
 
 				switch (i) {
 					case 0:
-						as.setRightArmPose(ea(-45.0, 45.0, 0.0));
-						as.setLeftArmPose(ea(-45.0, -45.0, 0.0));
+						as.setRightArmPose(ea(-45, 45, 0));
+						as.setLeftArmPose(ea(-45, -45, 0));
 						break;
 					case 1:
 						as.setRightArmPose(ea(-100, 30, 0));
 						as.setLeftArmPose(ea(-100, -30, 0));
 						break;
 					case 2:
-						as.setRightArmPose(ea(-100, -30, 0.0));
-						as.setLeftArmPose(ea(-100, 30, 0.0));
+						as.setRightArmPose(ea(-100, -30, 0));
+						as.setLeftArmPose(ea(-100, 30, 0));
 						break;
 					case 3:
 						as.setRightArmPose(ea(-100, 30, 0));
@@ -94,6 +108,7 @@ public class Runner implements Listener {
 
 					if (p.getVehicle() != null && p.getVehicle() instanceof ArmorStand) {
 
+						p.removePotionEffect(PotionEffectType.INVISIBILITY);
 						Entity vehicle = p.getVehicle();
 						vehicle.eject();
 						vehicle.remove();
@@ -147,6 +162,7 @@ public class Runner implements Listener {
 
 			Entity vehicle = player.getVehicle();
 
+			player.removePotionEffect(PotionEffectType.INVISIBILITY);
 			active.remove(player.getUniqueId());
 
 			vehicle.eject();
@@ -189,6 +205,7 @@ public class Runner implements Listener {
 			return;
 		}
 
+		player.removePotionEffect(PotionEffectType.INVISIBILITY);
 		active.remove(player.getUniqueId());
 
 		Entity vehicle = event.getDismounted();
