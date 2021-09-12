@@ -50,7 +50,7 @@ public class Runner implements Listener {
 		container.setVisible(false);
 		container.setInvulnerable(true);
 
-		PotionEffect invis = new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 1, false, false);
+		PotionEffect invis = new PotionEffect(PotionEffectType.INVISIBILITY, 200, 1, false, false);
 
 		player.addPotionEffect(invis);
 
@@ -330,5 +330,7 @@ public class Runner implements Listener {
 
 
 	}
+
+	
 
 }
