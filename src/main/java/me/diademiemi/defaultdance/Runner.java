@@ -12,6 +12,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.EulerAngle;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.Material;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
 import java.util.HashSet;
@@ -247,6 +250,18 @@ public class Runner implements Listener {
 			actor.setVisible(true);
 			actor.setInvulnerable(true);
 			actor.setArms(true);
+			
+			ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
+
+			SkullMeta headMeta = (SkullMeta) skull.getItemMeta();
+
+			assert headMeta != null;
+
+			headMeta.setOwner(player.getName());
+
+			skull.setItemMeta(headMeta);
+
+			actor.setHelmet(skull);
 
 			active.add(player.getUniqueId());
 
