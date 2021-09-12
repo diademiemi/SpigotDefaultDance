@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -43,6 +44,11 @@ public class Runner implements Listener {
 	public static void freezePlayer(Player player) {
 		Location location = player.getLocation();
 		World world = location.getWorld();
+
+		float yaw = location.getYaw();
+		float nyaw = Location.normalizeYaw(yaw);
+		location.setZ(location.getZ() + Math.cos(Math.toRadians(nyaw)) * 0.45);
+		location.setX(location.getX() - Math.sin(Math.toRadians(nyaw)) * 0.45);
 
 		ArmorStand container = (ArmorStand) world.spawnEntity(location.subtract(0, 1.13125, 0), EntityType.ARMOR_STAND);
 
