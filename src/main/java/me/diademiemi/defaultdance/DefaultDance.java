@@ -35,6 +35,7 @@ public class DefaultDance extends JavaPlugin {
 		pm = getServer().getPluginManager();
 
 		pm.addPermission(new Permission("defaultdance.use"));
+		pm.registerEvents(new Runner(), this);
 
 		getCommand("defaultdance").setExecutor(new CommandExec());
 	}

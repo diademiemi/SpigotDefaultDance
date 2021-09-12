@@ -22,7 +22,7 @@ import java.util.UUID;
  * @author : diademiemi
  * @created : 2021-09-12
 **/
-public class Runner {
+public class Runner implements Listener {
 
 	/**
 	 * Set that contains players currently dancing
