@@ -47,4 +47,13 @@ public class DefaultDance extends JavaPlugin {
 		plugin = null;
 	}
 
+	/**
+	 * Get plugin instance
+	 *
+	 * @return	Plugin instance
+	 */
+	public static DefaultDance getInstance() {
+		return plugin;
+	}
+
 }
