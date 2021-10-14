@@ -13,3 +13,7 @@ You can either run the command again or crouch to stop dancing when it is still 
 
 ## Installation
 Get the Jar from GitHub releases or compile from source, then place it in your plugins directory.  
+
+# Notice
+This plugin was made as a joke and won't be maintained. Feel free to fork, inspect the code and make your own version.  
+[LICENSE](./LICENSE)
